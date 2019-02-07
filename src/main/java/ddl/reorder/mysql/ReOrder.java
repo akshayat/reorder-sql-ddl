@@ -39,7 +39,7 @@ public class ReOrder {
 //			System.err.println("No input file. Pass it as 'java Organise <filename>'");
 //		}
 //		String srcFileName = args[0];
-		String srcFileName = "D:\\Ak\\organise-sql-ddl\\src\\main\\resources\\all-tables-create.sql";
+		String srcFileName = "path\\to\\file\\all-tables-create.sql";
 		ReOrder o = new ReOrder();
 		String fileContent = o.readFile(srcFileName);
 		List<Table> tables = o.parseFile(fileContent);
