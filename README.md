@@ -21,6 +21,7 @@ Run as simple java file
 * If any of table has circular dependency then it will show that in console along with the path from where circular dependency created
 	* It can detect circular any level or transitive circular dependency
 * If no circular dependency found, then it will create a file named "reordered.sql" with all the create statements
+* It will log a mysqldump command which you can use to export data in the same order of dependencies so that it does not create any issue
 
 # Disclaimer
 Created this simple tool to have quick solution. Don't claim to provide perfect output. 
