@@ -203,15 +203,21 @@ public class ReOrder {
 			table.getAlldependencies().forEach(dep -> System.out.println("\t" + dep.getDepOnTableName()));
 			System.out.println("-------------");
 		});
-		
+
 		if (tablesWithCircularDep.isEmpty()) {
 			Path file = Paths.get("reordered.sql");
 			try {
-				Files.write(file, tables.stream().map(Table::getCreateStatement).collect(Collectors.joining(";\n"))
-						.getBytes());
+				Files.write(file,
+						tables.stream().map(Table::getCreateStatement).collect(Collectors.joining(";\n")).getBytes());
 			} catch (IOException e) {
 				System.err.println("Could not write file");
 			}
+
+			System.out.println("\n------------\nMySQL dump command\n");
+			System.out.print(
+					"mysqldump --user=user_name -p --default-character-set=utf8 --single-transaction=TRUE --no-create-info=TRUE --skip-triggers \"schema_name\" ");
+			System.out.print(tables.stream().map(Table::getName).collect(Collectors.joining(" ")));
+			System.out.print(" > db_backup_data-$(date +\"%Y-%m-%d\")-important-data.sql");
 		}
 	}
 }
